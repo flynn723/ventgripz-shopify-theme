@@ -1,0 +1,56 @@
+/* BOLD.CSS 
+  To include this file in your theme, add the following before the closing </head> tag in theme.liquid
+  {{ 'bold.css' | asset_url | stylesheet_tag }}
+*/
+
+  /* ~=====  PRODUCT OPTIONS =====~ */
+	/* Cart Page */
+  .bold-master {}
+  .bold-hidden { display: none!important; }
+  .bold-properties {}
+  .bold_option_line {}
+  .bold_option_title {}
+  .bold_option_seperator {}
+  .bold_option_value {}
+    /* Edit-in-cart modal */
+  #bold-cart-modal {}
+    #bold-cart-modal .modal-content {}
+    #bold-cart-modal .modal-dialog{}
+    #bold-cart-modal .modal-body {}
+    #bold-cart-modal .bold-image img{ margin:0 auto 10px; display:block; }
+    #bold-cart-modal .bold-price { text-align:center; font-size:17px; font-weight:900; }
+    #bold-cart-modal .bold-title { text-align:center; font-size:17px; font-weight:900; }
+    #bold-cart-modal .bold-desc { text-align:center; }
+    #bold-cart-modal .bold-options{ padding:10px; }
+    #bold-cart-modal .modal-footer-buttons{ text-align:center; margin-top:10px; }
+
+  /* ~=====  RECURRING ORDERS =====~ */
+	/* Cart Page */
+  .bold_recurring_desc {}
+  .bold_ro_every {}
+  .bold_ro_frequency_num {}
+  .bold_ro_frequency_type_text{}
+  .discounted_price_in_cart{} 
+
+  /* ~=====  BUY THE MEASURE =====~ */
+    /* Cart Page */
+  .bold-inline-hidden { opacity: 0; }
+
+    /* Product Page */
+  .field_div label {
+  	/* Prevent input elements from being on own line */
+    display: inline-block !important;
+    width: 80px !important;
+  }
+  .field_div input {
+    width: 50px !important;
+    display: inline-block !important;
+    margin-right: 5px !important;
+  }
+
+  /* ~===== PRODUCT BUNDLES =====~ */
+    /* Product Page */
+  .product-bundle .product-image img {
+    /* Prevent bundle widget images spilling out of containers  */
+    max-height: 120px !important;
+  }

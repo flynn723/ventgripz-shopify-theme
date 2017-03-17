@@ -1,0 +1,466 @@
+<meta name="robots" content="noindex">
+{% include 'bold-product' with product, hide_action: 'break' %}{% if bold_hidden_product %}{% break %}{%endif %}
+
+<div id= "hiddenProductId" style="display:none;" data-product-id="{{product.id}}"></div>
+<!-- Bold: QB - Step 1 -->
+{% include 'shappify-qb-no-select' %}
+<!-- // end Bold code -->
+
+{% include 'bold-set-prices' with product %}
+{% assign selectedVariant = bold_selected_or_first_available_variant | default: product %}
+
+<!-- BOLD CSS to show the quantity-->
+<style type="text/css">
+  .glyphicon-chevron-left:before {
+  content: "\e079";
+}
+.glyphicon-chevron-right:before {
+  content: "\e080";
+}
+  .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+.sr-only-focusable:active,
+.sr-only-focusable:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+}
+  .carousel-control.left, .carousel-control.right {
+  background-image: none !important;
+  }
+.col-xs-6-important {
+    float: left !important;
+}
+.col-xs-6-important {
+    width: 50% !important;
+    position: relative !important;
+    min-height: 1px !important;
+    padding-right: 15px !important;
+    padding-left: 15px !important;
+}
+/**/
+.header-tools {
+  display: none;
+}
+.show-border .main-header {
+  border: none;
+}
+.template-product .main-content {
+    font-size: 16px;
+    padding: 0;
+}
+.insta-container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 16px;
+}
+.instagram-page-title {
+    width: 100%;
+    margin: 0 auto;
+    color: #000;
+    text-align: center;
+    font-size: 30px;
+    display: block;
+    line-height: 32px;
+}
+  #insta-carousel {
+    margin-top: 15px;
+  }
+.product-carousel-sub-title {
+  margin-top: 15px;
+}
+.carousel-inner img {
+    display: block;
+    width: 100%;
+}
+.product-description {
+    margin-top: 15px;
+    font-size: 16px;
+}
+.product-description p:first-child {
+    margin-top: 0;
+}
+.product-description p {
+    margin-top: 15px;
+    margin-bottom: 0;
+}
+.product-price {
+    margin: 0;
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+    margin-top: 0;
+}
+.product-form .input-wrapper.product-quantity {
+    margin: 0;
+}
+.product-form .product-quantity label[for="quantity"] {
+    display: none;
+}
+.product-form .product-quantity input[name="quantity"] {
+    display: block;
+    margin: 0;
+    border-radius: 0 !important;
+}
+.col-minus,
+.col-plus {
+    background: #fff;
+    border: 1px solid #dadada;
+    min-height: 50px;
+    text-align: center;
+    cursor: pointer;
+    padding: 8px 0;
+    height: 50px;
+    font-size: 20px;
+}
+.col-minus.not-clickable {
+  cursor: initial;
+}
+.product-form .add-to-cart {
+    margin-top: 15px;
+}
+.product-form .product-form-submit-wrap {
+    width: 100%;
+}
+.product-form .product-form-submit-wrap input[type="submit"] {
+    display: block;
+    width: 100%;
+    background: #3cba2e;
+    border-radius: 5px;
+    box-shadow: 0px 4px 0px 0px #2f9123;
+}
+.insta-container .sub-title {
+    color: rgb(75, 82, 86);
+    font-size: 16px;
+    margin-top: 15px;
+  line-height: 26px;
+    margin-bottom: 5px;text-transform: uppercase;
+}
+#countdown span {
+    background: #2e2e2e;
+    padding: 5px;
+    color: #fff;
+    border-radius: 5px;
+    width: 100%;
+    display: block;
+    text-align: center;
+}
+#countdown .smalltext {
+    width: 100%;
+    text-align: center;
+    font-size: 8px;
+    text-transform: uppercase;
+    margin-top: 5px;
+}
+.product-countdown,
+.product-video {
+    margin-top: 30px;
+}
+.footer-wrapper {
+    margin-top: 15px;
+}
+</style>
+<div class="insta-container" itemscope itemtype="http://schema.org/Product">
+  <span class="instagram-page-title" itemprop="name">Magnetic Air Vent<br/>Phone Mount</span>
+  <div id="insta-carousel" class="carousel slide row clearfix" data-ride="carousel">
+    <!-- Indicators -->
+    <!-- <ol class="carousel-indicators">
+      <li data-target="#insta-carousel" data-slide-to="0" class="active"></li>
+    </ol>
+ -->
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <img src="https://cdn.shopify.com/s/files/1/0895/4184/files/product-display-slider.jpg" alt="VentGripz">
+        <div class="carousel-caption"></div>
+      </div>
+      <div class="item">
+        <img src="https://cdn.shopify.com/s/files/1/0895/4184/files/product-slider-1.jpg" alt="VentGripz">
+        <div class="carousel-caption"></div>
+      </div>
+      <div class="item">
+        <img src="https://cdn.shopify.com/s/files/1/0895/4184/files/product-slider-2.jpg" alt="VentGripz">
+        <div class="carousel-caption"></div>
+      </div>
+      <div class="item">
+        <img src="https://cdn.shopify.com/s/files/1/0895/4184/files/product-slider-3-new.jpg" alt="VentGripz">
+        <div class="carousel-caption"></div>
+      </div>
+      <div class="item">
+        <img src="https://cdn.shopify.com/s/files/1/0895/4184/files/product-slider-4.jpg" alt="VentGripz">
+        <div class="carousel-caption"></div>
+      </div>
+      <div class="item">
+        <img src="https://cdn.shopify.com/s/files/1/0895/4184/files/product-slider-5.jpg" alt="VentGripz">
+        <div class="carousel-caption"></div>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#insta-carousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#insta-carousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+  <!-- <div class="product-carousel-sub-title text-center"><i>(case not included)</i></div> -->
+  {% if product.description.size > 0 %}
+  <div class="product-description" itemprop="description">
+    {{ product.description }}
+  </div>
+  <div class="product-packaging" style="display: none;"><img src="https://cdn.shopify.com/s/files/1/0895/4184/files/packaging.jpg" alt="Packaging" width="100%"/></div>
+  {% endif %}
+  <div class="product-price">Price {{ selectedVariant.price | money }}</div>
+  <form class="product-form clearfix" action="/cart/add" method="post" class="shappify_add_to_cart_form" data-product-id="{{ product.id }}" enctype="multipart/form-data">
+    {% if shappify_qb_options_count > 1 %}
+      <div class="product-options">
+        <select name="id" id="product-select" class="product-select">
+          {% for variant in product.variants %}
+          {% include 'bold-hidden-variants' with variant, bold_loop: 'loop' %}
+          
+          <!-- Bold: QB - Step 2 -->
+          {% if variant.metafields.shappify_qb.qb_hide == "1" %}{% continue %}{% endif %}
+          <!-- // end Bold code -->
+          
+            <option {% if variant == selectedVariant %} selected="selected" {% endif %} value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    {% else %}
+      <input type="hidden" name="id" class="product-select" value="{{ product.variants[0].id }}" data-variant-title="{{ product.variants[0].title }}" />
+    {% endif %}
+      
+    <!-- Bold: QB - Step 4 -->
+    <div id="shappify-qty-msg"></div>
+    <!-- // end Bold code -->
+    {% unless qb_loaded == 'true' %}
+      <div id="shappify-qty-msg"></div>
+      {% assign qb_loaded = 'true' %}
+    {% endunless %}
+      <div class="input-wrapper product-quantity clearfix">
+        <label for="quantity">{{ 'general.quantity' | t }}</label>
+        <div class="col-xs-3 col-minus not-clickable">-</div>
+        <input type="text" name="quantity" id="quantity" value="1" class="col-xs-6-important"/>
+        <div class="col-xs-3 col-plus">+</div>
+      </div>
+
+      <div class="add-to-cart">
+        {% if product.available %}
+          <div class="product-form-submit-wrap">
+            <input type="submit" value="{{ 'products.product.add_to_cart' | t }}" />
+            <div class="add-to-cart-loader"></div>
+          </div>
+          {% capture cart_link %}
+            <a href="/cart">{{ 'products.product.cart_link' | t }}</a>
+          {% endcapture %}
+          {% capture continue_link %}
+            <a href="/collections/all">{{ 'products.product.continue_link' | t }}</a>
+          {% endcapture %}
+          {% capture checkout_link %}
+            <a href="/checkout">{{ 'products.product.checkout_link' | t }}</a>
+          {% endcapture %}
+          {% capture product_item %}
+            <span class='added-product-name'></span>
+          {% endcapture %}
+          <p class="product-add-success-message">{{ 'products.product.success_html' | t: cart_link: cart_link, continue_link: continue_link, checkout_link: checkout_link, product: product_item  }}</p>
+          <p class="product-add-error-message"></p>
+        {% else %}
+          <input type="button" class="disabled" disabled="disabled" value="{{ 'products.product.sold_out' | t }}" />
+        {% endif %}
+      </div>
+      <!-- Bold: Options 3-2 -->
+  {% include 'shappify-options' %}
+  <!-- // end Options 3-2 -->
+  </form>
+  <div class="product-countdown">
+    <div id="countdown" class="row">
+      <div>
+        <span class="days"></span>
+        <div class="smalltext">Days</div>
+      </div>
+      <div>
+        <span class="hours"></span>
+        <div class="smalltext">Hours</div>
+      </div>
+      <div>
+        <span class="minutes"></span>
+        <div class="smalltext">Minutes</div>
+      </div>
+      <div>
+        <span class="seconds"></span>
+        <div class="smalltext">Seconds</div>
+      </div>
+    </div>
+  </div>
+  <div class="product-reviews">
+    <h2 class="sub-title"><strong>Reviews:</strong></h2>
+    <div id="insta-reviews-carousel" class="carousel slide clearfix row" data-ride="carousel">
+      <!-- Indicators -->
+      <!-- <ol class="carousel-indicators">
+        <li data-target="#insta-reviews-carousel" data-slide-to="0" class="active"></li>
+      </ol> -->
+      <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <img src="https://cdn.shopify.com/s/files/1/0895/4184/files/reviews-slider.jpg" alt="VentGripz Review">
+        <div class="carousel-caption"></div>
+      </div>
+      <div class="item">
+        <img src="https://cdn.shopify.com/s/files/1/0895/4184/files/reviews-slider-1.jpg" alt="VentGripz Review">
+        <div class="carousel-caption"></div>
+      </div>
+      <div class="item">
+        <img src="https://cdn.shopify.com/s/files/1/0895/4184/files/reviews-slider-2.jpg" alt="VentGripz Review">
+        <div class="carousel-caption"></div>
+      </div>
+      <div class="item">
+        <img src="https://cdn.shopify.com/s/files/1/0895/4184/files/reviews-slider-3.jpg" alt="VentGripz Review">
+        <div class="carousel-caption"></div>
+      </div>
+      <div class="item">
+        <img src="https://cdn.shopify.com/s/files/1/0895/4184/files/reviews-slider-4.jpg" alt="VentGripz Review">
+        <div class="carousel-caption"></div>
+      </div>
+    </div>
+      <!-- Controls -->
+      <a class="left carousel-control" href="#insta-reviews-carousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#insta-reviews-carousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+  <div class="product-video">
+    <h2 class="sub-title"><strong>Comparison Video:</strong></h2>
+    <div class="video-row row"><iframe class="comparison-video" width="100%" height="300" src="https://www.youtube.com/embed/OCaDFEnPhHk" frameborder="0" allowfullscreen></iframe></div>
+  </div>
+<script type="text/javascript">
+  // required for splitting variants
+  // see ProductView
+  window.productJSON = bold_product_json[{{ product.id }}];
+</script>
+<script type="text/javascript">
+  jQuery(window).load(function(){
+    $('#shappify-qty-msg').html($('.shappify_qb_grid').parent().html());
+  });
+  console.log('on product.instagram.liquid');
+  jQuery('.product-form-submit-wrap input[type="submit"]').click(function(){
+    setTimeout(
+      function() 
+      {
+        /* Direct to cart after 2000ms */
+        window.location.href = 'http://ventgripz.com/checkout';
+      },
+    1000);
+  });
+</script>
+<script type="text/javascript">
+function getTimeRemaining(endtime) {
+  var t = Date.parse(endtime) - Date.parse(new Date());
+  var seconds = Math.floor((t / 1000) % 60);
+  var minutes = Math.floor((t / 1000 / 60) % 60);
+  var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+  var days = Math.floor(t / (1000 * 60 * 60 * 24));
+  return {
+    'total': t,
+    'days': days,
+    'hours': hours,
+    'minutes': minutes,
+    'seconds': seconds
+  };
+}
+function initializeClock(id, endtime) {
+  var clock = document.getElementById(id);
+  var daysSpan = clock.querySelector('.days');
+  var hoursSpan = clock.querySelector('.hours');
+  var minutesSpan = clock.querySelector('.minutes');
+  var secondsSpan = clock.querySelector('.seconds');
+  function updateClock() {
+    var t = getTimeRemaining(endtime);
+    daysSpan.innerHTML = t.days;
+    hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+    minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+    secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+    if (t.total <= 0) {
+      clearInterval(timeinterval);
+    }
+  }
+  updateClock();
+  var timeinterval = setInterval(updateClock, 1000);
+}
+/* ================== */
+function vidRescale(e){
+  /* aspectRatio = 16:9 */
+  var aspectRatioW = 16;
+  var aspectRatioH = 9;
+  jQuery(e).attr('width', '100%');
+  var w = jQuery(e).width();
+  var h = (w*aspectRatioH)/aspectRatioW;
+  jQuery(e).height(h);
+}
+jQuery(document).ready(function(){
+  var countdownIsOn = false;
+  if (countdownIsOn){
+    /* ================== */
+    var deadline = new Date("October 31, 2016 12:00:00");
+    /* ================== */
+    deadline = new Date(Date.parse(deadline));
+    initializeClock('countdown', deadline);    
+  } else {
+    jQuery('.product-countdown').empty().hide();
+  }
+  /* ================== */
+  jQuery('#countdown > div').addClass('col-xs-3');
+});
+jQuery('.show-product-packaging').on('click', function(){
+  jQuery('.product-packaging').show(500);
+});
+jQuery('.col-minus').on('click', function(){
+  var quantity = parseInt(jQuery('input#quantity').val());
+  if (quantity > 1){
+    quantity--;
+    jQuery('input#quantity').val(quantity);
+    jQuery(this).removeClass('not-clickable');
+  }
+  if (quantity <= 1) {
+    jQuery(this).addClass('not-clickable');
+  }
+});
+jQuery('.col-plus').on('click', function(){
+  var quantity = parseInt(jQuery('input#quantity').val());
+  quantity++;
+  jQuery('input#quantity').val(quantity);
+  if (quantity > 1){
+    jQuery('.col-minus').removeClass('not-clickable');
+  }
+});
+jQuery(window).on('load resize', function(){
+  vidRescale('.comparison-video');
+});
+executeWhenElementsExist=setInterval(function(){
+  if ( jQuery('#fsb_bar').length > 0 && jQuery('.product-form .product-form-submit-wrap input[type="submit"]').length > 0) {
+    jQuery('.product-form .product-form-submit-wrap input[type="submit"]').attr('value', 'Buy It Now');
+    clearInterval(executeWhenElementsExist);
+    console.log('interval cleared');
+  }
+},500);
+</script>

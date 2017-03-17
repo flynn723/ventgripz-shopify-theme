@@ -1,0 +1,803 @@
+/*
+	*****
+	*****
+	*****
+	css file for template
+	*****
+	*****
+	*****
+	*/
+      
+  /*#customPage h1{font-size:30px;  text-align:left;color:#000000; font-family:arial;font-weight:300;color:#000;margin:20px 0px 0px 0px;}
+  #customPage h2{font-size:23px  !important;font-family:arial;font-weight:300;color:#000;margin:0px 40%;}*/
+      .main-content{max-width:100% !important;}
+      #third1{
+background-color:#f2f2f2;
+padding:20px 0px;
+  width: 104.3%;
+    margin-left: -2%;
+}
+#first1 h1 {color:#000000;font-family: 'Avenir Next LT Pro Regular';font-size:30px;}
+#third1 h1.thirdh1 {color:#000000;font-family: 'Avenir Next LT Pro Regular';font-size:30px;}
+#third  h2{color:#000000;}
+#second1 h1 {text-align:left;font-family: 'Avenir Next LT Pro Regular';position:relative;font-size:25px;}
+
+#second1 h1.textpart1  {  margin-left:7.6%}
+
+#second1 h1.imagepart1 {margin-left:2%}
+      #customPage  ul#majorlist {
+        list-style-image: url('https://cdn.shopify.com/s/files/1/0895/4184/t/12/assets/imageedit_13_7870144300.gif'); !important;}
+		#customPage  ul li{line-height:1.2;font-size:15px;font-family:arial;}
+/*css file*/
+
+/*above 1000*/
+/*css file*/
+@media screen and (min-width:1250px){
+#customPage{
+    /*
+    width:100%; 
+    border:2px solid black*/
+  
+}
+  .product-wrap{margin-top:-58px;}
+.customParts{
+    width:100%;
+    float:left;
+    margin:0px auto;
+}
+#first1{
+background-color:#ffffff;
+
+}
+ 
+ #first1  #bigpic{
+    width:60%;
+	max-width:950px;
+	float:left;
+}
+#first1 #bigpic img{width:100%}
+#first1  #logoform{
+width:35%;
+float:right;
+}
+#second1{
+ 
+background-color:#ffffff;
+border-top:1px solid #f2f2f2;
+border-bottom:1px solid #f2f2f2;
+}
+#second1 .subsecond{
+    float:left;
+}
+#second1 #textpart h1 {text-align:left;font-family: 'Avenir Next LT Pro Regular';position:relative;font-size:25px;}
+ #second1 #textpart{
+ min-height:350px;
+ width:60%;
+  background-image:url('https://cdn.shopify.com/s/files/1/0895/4184/t/12/assets/DSC01162edit.png');
+  background-repeat:no-repeat;
+  background-position:center center;  
+  background-size:cover;
+}
+ #second1 #textpart ul{margin:20px 0% 0% 5%;}
+#second1 #imagespart{
+width:35%;
+}
+#second1 #imagespart .showcase{
+  float:left;
+}
+
+#second1 #imagespart #smallimages{
+width:20%; 
+
+}
+#second1 #imagespart #smallimages img{width:60px;display:block;}
+#second1 #imagespart #bigimage{
+  width:80%;
+  margin:0px auto;
+}
+#second1 #imagespart #bigimage img{
+width:100%;
+margin-top:-10px;
+padding:0px 0px 0px 25%;
+}
+#third1{
+background-color:#f2f2f2;
+padding:20px 0px;
+}
+#third1 h1.thirdh1 {text-align:center;position:relative;left:-3%;font-size:30px;}
+#third1 h2{font-family: 'Avenir Next LT Pro Regular';text-align:center;font-size:21px;}
+ #third1 .speclist{
+  float:left;
+  position:relative;
+	}
+#third1 #Packaging{
+left:5.7%;
+position:relative;
+padding:5px;
+width:40%;
+border-radius:5px;
+}
+
+#third1 #Packaging > span{display:block;border:1px solid #f2f2f2;max-height:80px;margin:0px 0px;background:#ffffff;padding:0px 10px;}
+#third1 #Packaging span span{float:left;padding:6px 0px;}
+#third1 #Packaging span #name1{width:60%; }
+#third1 #Packaging span #num1{width:15%}
+#third1 #Packaging span #scale1{width:10%}
+#third1 #Packaging span:after{content: ""; 
+    
+   display: block; 
+    clear: both;}
+ 
+#third1 #Mount{
+ padding:5px;
+left:14.7%;
+position:relative;
+width:40%;
+border-radius:5px;
+}
+ #third1 #Mount > span{display:block;border:1px solid #f2f2f2;max-height:80px;margin:0px 0px;background:#ffffff;padding:0px 10px;}
+#third1 #Mount span span{float:left;padding:6px 0px;}
+
+#third1 #Mount span #name1{width:60%}
+#third1 #Mount span #num1{width:15%}
+#third1 #Mount span #scale1{width:10%}
+#third1 #Mount span:after{content: ""; 
+    display: block; 
+    clear: both;}
+.clearfix1{content: ""; 
+    display: block; 
+    clear: both;}
+    	.option_type_id_220220 .shappify_option_name:after{content:url('https://cdn.shopify.com/s/files/1/0895/4184/files/imageedit_14_9341701876.png?3791269633534933111');left:45%;position:relative;top:12px}
+
+} 
+
+/*1000 till 990*/
+@media screen and (min-width:990px) and (max-width:1249px){
+/*above 1000*/
+/*css file*/
+
+#customPage{
+    /*
+    width:100%; 
+    border:2px solid black*/
+  
+}
+   .product-wrap{margin-top:-58px;}
+.customParts{
+    width:100%;
+    float:left;
+    margin:0px auto;
+}
+#first1{
+background-color:#ffffff;
+
+}
+ 
+ #first1  #bigpic{
+    width:55%;
+	max-width:950px;
+	float:left;
+}
+#first1 #bigpic img{width:100%}
+#first1  #logoform{
+width:45%;
+float:right;
+}
+#second1{
+ 
+background-color:#ffffff;
+border-top:1px solid #f2f2f2;
+border-bottom:1px solid #f2f2f2;
+}
+#second1 .subsecond{
+    float:left;
+}
+#second1 #textpart h1 {text-align:left;font-family: 'Avenir Next LT Pro Regular';position:relative;font-size:25px;}
+ #second1 #textpart{
+ min-height:350px;
+ width:60%;
+  background-image:url('https://cdn.shopify.com/s/files/1/0895/4184/t/12/assets/DSC01162edit.png');
+  background-repeat:no-repeat;
+  background-position:center center;  
+  background-size:cover;
+}
+ #second1 #textpart ul{margin:20px 0% 0% 5%;}
+#second1 #imagespart{
+width:35%;
+}
+#second1 #imagespart .showcase{
+  float:left;
+}
+
+#second1 #imagespart #smallimages{
+width:20%; 
+
+}
+#second1 #imagespart #smallimages img{width:60px;display:block;}
+#second1 #imagespart #bigimage{
+  width:80%;
+  margin:0px auto;
+}
+#second1 #imagespart #bigimage img{
+width:100%;
+margin-top:-10px;
+padding:0px 0px 0px 25%;
+}
+#third1{
+background-color:#f2f2f2;
+padding:20px 0px;
+}
+#third1 h1.thirdh1 {text-align:center;position:relative;left:-3%;font-size:30px;}
+#third1 h2{font-family: 'Avenir Next LT Pro Regular';text-align:center;font-size:21px;}
+ #third1 .speclist{
+  float:left;
+  position:relative;
+	}
+#third1 #Packaging{
+left:5.7%;
+position:relative;
+padding:5px;
+width:40%;
+border-radius:5px;
+}
+
+#third1 #Packaging > span{display:block;border:1px solid #f2f2f2;max-height:80px;margin:0px 0px;background:#ffffff;padding:0px 10px;}
+#third1 #Packaging span span{float:left;padding:6px 0px;}
+#third1 #Packaging span #name1{width:60%; }
+#third1 #Packaging span #num1{width:15%}
+#third1 #Packaging span #scale1{width:10%}
+#third1 #Packaging span:after{content: ""; 
+    
+   display: block; 
+    clear: both;}
+ 
+#third1 #Mount{
+ padding:5px;
+left:14.7%;
+position:relative;
+width:40%;
+border-radius:5px;
+}
+ #third1 #Mount > span{display:block;border:1px solid #f2f2f2;max-height:80px;margin:0px 0px;background:#ffffff;padding:0px 10px;}
+#third1 #Mount span span{float:left;padding:6px 0px;}
+
+#third1 #Mount span #name1{width:60%}
+#third1 #Mount span #num1{width:15%}
+#third1 #Mount span #scale1{width:10%}
+#third1 #Mount span:after{content: ""; 
+    display: block; 
+    clear: both;}
+.clearfix1{content: ""; 
+    display: block; 
+    clear: both;}
+    	.option_type_id_220220 .shappify_option_name:after{content:url('https://cdn.shopify.com/s/files/1/0895/4184/files/imageedit_14_9341701876.png?3791269633534933111');left:45%;position:relative;top:12px}
+
+} 
+/* 990 to 850*/
+
+ @media screen and (min-width:750px) and (max-width:989px){
+
+#customPage{
+    /*
+    width:100%; 
+    border:2px solid black*/
+  
+}
+    .product-wrap{margin-top:-8px;}
+.customParts{
+    width:100%;
+    float:left;
+    margin:0px auto;
+}
+#first1{
+background-color:#ffffff;
+
+}
+ 
+ #first1  #bigpic{
+    width:100%;
+	max-width:950px;
+	float:left;
+}
+#first1 #bigpic img{width:100%}
+#first1  #logoform{
+width:80%;
+margin:0px 11%;
+float:right;
+}
+#second1{
+ 
+background-color:#ffffff;
+border-top:1px solid #f2f2f2;
+border-bottom:1px solid #f2f2f2;
+}
+#second1 .subsecond{
+    float:left;
+}
+#second1 #textpart h1 {text-align:left;font-family: 'Avenir Next LT Pro Regular';position:relative;font-size:25px;}
+ #second1 #textpart{
+ min-height:350px;
+ width:60%;
+  background-image:url('https://cdn.shopify.com/s/files/1/0895/4184/t/12/assets/DSC01162edit.png');
+  background-repeat:no-repeat;
+  background-position:center center;  
+  background-size:cover;
+}
+ #second1 #textpart ul{margin:20px 0% 0% 5%;}
+#second1 #imagespart{
+width:35%;
+}
+#second1 #imagespart .showcase{
+  float:left;
+}
+
+#second1 #imagespart #smallimages{
+width:20%; 
+
+}
+#second1 #imagespart #smallimages img{width:60px;display:block;}
+#second1 #imagespart #bigimage{
+  width:80%;
+  margin:0px auto;
+}
+#second1 #imagespart #bigimage img{
+width:100%;
+margin-top:-10px;
+padding:0px 0px 0px 25%;
+}
+#third1{
+background-color:#f2f2f2;
+padding:20px 0px;
+}
+#third1 h1.thirdh1 {text-align:center;position:relative;left:-3%;font-size:30px;}
+#third1 h2{font-family: 'Avenir Next LT Pro Regular';text-align:center;font-size:21px;}
+ #third1 .speclist{
+  float:left;
+  position:relative;
+	}
+#third1 #Packaging{
+left:5.7%;
+position:relative;
+padding:5px;
+width:40%;
+border-radius:5px;
+}
+
+#third1 #Packaging > span{display:block;border:1px solid #f2f2f2;max-height:80px;margin:0px 0px;background:#ffffff;padding:0px 10px;}
+#third1 #Packaging span span{float:left;padding:6px 0px;}
+#third1 #Packaging span #name1{width:60%; }
+#third1 #Packaging span #num1{width:15%}
+#third1 #Packaging span #scale1{width:10%}
+#third1 #Packaging span:after{content: ""; 
+    
+   display: block; 
+    clear: both;}
+ 
+#third1 #Mount{
+ padding:5px;
+left:14.7%;
+position:relative;
+width:44%;
+border-radius:5px;
+}
+ #third1 #Mount > span{display:block;border:1px solid #f2f2f2;max-height:80px;margin:0px 0px;background:#ffffff;padding:0px 10px;}
+#third1 #Mount span span{float:left;padding:6px 0px;}
+
+#third1 #Mount span #name1{width:40%}
+#third1 #Mount span #num1{width:15%}
+#third1 #Mount span #scale1{width:10%}
+#third1 #Mount span:after{content: ""; 
+    display: block; 
+    clear: both;}
+.clearfix1{content: ""; 
+    display: block; 
+    clear: both;}
+     	.option_type_id_220220 .shappify_option_name:after{content:url('https://cdn.shopify.com/s/files/1/0895/4184/files/imageedit_14_9341701876.png?3791269633534933111');left:45%;position:relative;top:12px}
+
+} 
+
+/*below 749*/
+/*css file*/
+@media screen and (min-width:480px) and (max-width:749px){
+#customPage{
+  
+ }
+.customParts{
+    width:100%;
+    float:left;
+    margin:0px auto;
+}
+#first1{
+background-color:#ffffff;
+
+}
+#first1 > h1{
+    padding:5px;
+    font-size:22px;
+    color:#6b6b6b;
+}
+#first1 #thumbnail{width:30%;padding:5px;}
+#first1  #bigpic{
+    width:100%;
+}
+#first1 #bigpic img{width:100%}
+#first1  #logoform{
+width:100%;margin-bottom:10px;
+
+}
+#second1{
+ 
+background-color:#ffffff;
+border-top:1px solid #f2f2f2;
+border-bottom:1px solid #f2f2f2;
+}
+#second1 .subsecond{
+    float:left;
+}
+#second1 #textpart{
+ min-height:350px;
+ width:100%;
+  background-image:url('https://cdn.shopify.com/s/files/1/0895/4184/t/12/assets/DSC01162edit.png');
+  background-repeat:no-repeat;
+  background-position:center center;  
+  background-size:cover;
+}
+ #second1 #textpart ul{margin:20px 0% 0% 5%;}
+#second1 #imagespart{
+width:100%;
+}
+#second1 #imagespart h1{font-size:22px;}
+#second1 #imagespart .showcase{
+  float:left;
+}
+
+#second1 #imagespart #smallimages{
+width:20%; 
+
+}
+#second1 #imagespart #smallimages img{width:60px;display:block;}
+#second1 #imagespart #bigimage{
+  width:80%;
+  margin:0px auto;
+}
+#second1 #imagespart #bigimage img{
+width:80%;
+margin-top:-10px;
+padding:0px 0px 0px 25%;
+}
+#third1{
+background-color:#f2f2f2;
+padding:20px 0px;
+}
+#third1 h1.thirdh1 {text-align:center;position:relative;left:-3%;font-size:30px;}
+#third1 h2{font-family: 'Avenir Next LT Pro Regular';text-align:center;font-size:21px;}
+ #third1 .speclist{
+  float:left;
+  position:relative;
+	}
+#third1 #Packaging{
+left:5.7%;
+position:relative;
+padding:5px;
+width:90%;
+border-radius:5px;
+}
+
+#third1 #Packaging > span{display:block;border:1px solid #f2f2f2;max-height:80px;margin:0px 0px;background:#ffffff;padding:0px 10px;}
+#third1 #Packaging span span{float:left;padding:6px 0px;}
+#third1 #Packaging span #name1{width:60%; }
+#third1 #Packaging span #num1{width:15%}
+#third1 #Packaging span #scale1{width:10%}
+#third1 #Packaging span:after{content: ""; 
+    
+   display: block; 
+    clear: both;}
+ 
+#third1 #Mount{
+ padding:5px;
+left:5.7%;
+position:relative;
+width:90%;
+border-radius:5px;
+}
+ #third1 #Mount > span{display:block;border:1px solid #f2f2f2;max-height:80px;margin:0px 0px;background:#ffffff;padding:0px 10px;}
+#third1 #Mount span span{float:left;padding:6px 0px;}
+
+#third1 #Mount span #name1{width:50%}
+#third1 #Mount span #num1{width:15%}
+#third1 #Mount span #scale1{width:10%}
+#third1 #Mount span:after{content: ""; 
+    display: block; 
+    clear: both;}
+
+.clearfix1{content: ""; 
+    display: block; 
+    clear: both;}
+    	.option_type_id_220220 .shappify_option_name:after{content:url('https://cdn.shopify.com/s/files/1/0895/4184/files/imageedit_14_9341701876.png?3791269633534933111');left:40%;position:relative;top:12px}
+
+}
+/*below 450*/
+      
+@media screen and (max-width:479px){
+#customPage{
+ /*
+    width:100%; 
+    border:2px solid black*/
+ }
+.customParts{
+    width:100%;
+    float:left;
+    margin:0px auto;
+}
+#first1{
+background-color:#ffffff;
+
+} 
+#first1 .subfirst1{
+    width:33%;
+    float:left;
+}
+#first1 #thumbnail{width:30%;padding:5px;}
+#first1  #bigpic{
+    width:100%;
+}
+#first1 #bigpic img{width:100%}
+#first1  #logoform{
+width:100%;margin-bottom:10px;
+
+}
+#second1{
+ 
+background-color:#ffffff;
+border-top:1px solid #f2f2f2;
+border-bottom:1px solid #f2f2f2;
+}
+#second1 .subsecond{
+    float:left;
+}
+#second1 #textpart{
+ min-height:350px;
+ width:100%;
+  background-image:url('https://cdn.shopify.com/s/files/1/0895/4184/t/12/assets/DSC01162edit.png');
+  background-repeat:no-repeat;
+  background-position:center center;  
+  background-size:cover;
+}
+ #second1 #textpart ul{margin:20px 0% 0% 5%;}
+#second1 #imagespart{
+width:100%;
+}
+#second1 #imagespart h1{font-size:22px;}
+#second1 #imagespart .showcase{
+  float:left;
+}
+
+#second1 #imagespart #smallimages{
+width:20%; 
+
+}
+#second1 #imagespart #smallimages img{width:60px;display:block;}
+#second1 #imagespart #bigimage{
+  width:80%;
+  margin:0px auto;
+}
+#second1 #imagespart #bigimage img{
+width:70%;
+margin-top:-10px;
+padding:0px 0px 0px 25%;
+}
+#third1{
+background-color:#f2f2f2;
+padding:20px 0px;
+}
+#third1 h1.thirdh1 {text-align:center;position:relative;left:-10.5%;font-size:30px;}
+#third1 h2{font-family: 'Avenir Next LT Pro Regular';text-align:center;font-size:21px;}
+ #third1 .speclist{
+  float:left;
+  position:relative;
+	}
+#third1 #Packaging{
+left:3.7%;
+position:relative;
+padding:5px;
+width:90%;
+border-radius:5px;
+}
+
+#third1 #Packaging > span{display:block;border:1px solid #f2f2f2;max-height:80px;margin:0px 0px;background:#ffffff;padding:0px 10px;}
+#third1 #Packaging span span{float:left;padding:6px 0px;}
+#third1 #Packaging span #name1{width:60%; }
+#third1 #Packaging span #num1{width:15%}
+#third1 #Packaging span #scale1{width:10%}
+#third1 #Packaging span:after{content: ""; 
+    
+   display: block; 
+    clear: both;}
+ 
+#third1 #Mount{
+ padding:5px;
+left:.7%;
+position:relative;
+width:100%;
+border-radius:5px;
+}
+ #third1 #Mount > span{display:block;border:1px solid #f2f2f2;max-height:80px;margin:0px 0px;background:#ffffff;padding:0px 10px;}
+#third1 #Mount span span{float:left;padding:6px 0px;}
+
+#third1 #Mount span #name1{width:50%}
+#third1 #Mount span #num1{width:20%}
+#third1 #Mount span #scale1{width:2%}
+#third1 #Mount span:after{content: ""; 
+    display: block; 
+    clear: both;}
+
+.clearfix1{content: ""; 
+    display: block; 
+    clear: both;}
+    	.option_type_id_220220 .shappify_option_name:after{content:url('https://cdn.shopify.com/s/files/1/0895/4184/files/imageedit_14_9341701876.png?3791269633534933111');left:38%;position:relative;top:12px}
+
+}
+/*slider 2 css*/
+
+ /* jssor slider thumbnail navigator skin 13 css *//*
+		.jssort13 .p (normal).jssort13 .p:hover      (normal mouseover).jssort13 .pav          (active).jssort13 .pav:hover    (active mouseover).jssort13 .pdn          (mousedown)*/
+		 
+		.jssort13 .p {POSITION: absolute;    WIDTH: 100px;    HEIGHT: 80px;   margin-top:0px; TOP: 0px;    LEFT: 0;    padding: 0px;}
+		.jssort13 .w {    cursor: pointer;    position: absolute;    WIDTH: 98px;    HEIGHT: 80px;         top: -1px;    left: 0px;}
+		.jssort13 .pav .w, .jssort13 .pdn .w {}
+		.jssort13 .c {    width: 100%;    height: 100%;    position: absolute;    top: 0;    left: 0;    line-height: 29px;    text-align: center;    color: #000;    font-size: 13.0px;}
+		.jssort13 .p .c, .jssort13 .pav:hover .c {    background-color: #ffffff;}
+		.jssort13 .pav .c, .jssort13 .p:hover .c {    background-color: #fff;}
+
+
+		/*slider 1 css*/
+		  .jssort01-99-66 .c {displa y:none;}
+        /*
+		jssor slider arrow navigator skin 05 css */
+        /*
+        .jssora05l                  (normal)
+        .jssora05r                  (normal)
+        .jssora05l:hover            (normal mouseover)
+        .jssora05r:hover            (normal mouseover)
+        .jssora05l.jssora05ldn      (mousedown)
+        .jssora05r.jssora05rdn      (mousedown)
+        */
+        .jssora05l, .jssora05r {
+            display: block;
+            position: absolute;
+            /* size of arrow element */
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            background: url('img/a17.png') no-repeat;
+            overflow: hidden;
+        }
+        .jssora05l { background-position: -10px -40px; }
+        .jssora05r { background-position: -70px -40px; }
+        .jssora05l:hover { background-position: -130px -40px; }
+        .jssora05r:hover { background-position: -190px -40px; }
+        .jssora05l.jssora05ldn { background-position: -250px -40px; }
+        .jssora05r.jssora05rdn { background-position: -310px -40px; }
+
+        /* jssor slider thumbnail navigator skin 01 css */
+        /*
+        .jssort01-99-66 .p            (normal)
+        .jssort01-99-66 .p:hover      (normal mouseover)
+        .jssort01-99-66 .p.pav        (active)
+        .jssort01-99-66 .p.pdn        (mousedown)
+        */
+        .jssort01-99-66 .p {
+            position: absolute;
+            top: 0;
+            left: 0;
+           width: 100px;
+            height: 80px;/*
+            width: 99px;
+            height: 66px;*/
+        }
+        
+        .jssort01-99-66 .t {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .jssort01-99-66 .w {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .jssort01-99-66 .c {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 95px;
+            height: 62px;
+            /*border: #000 2px solid;*/
+            box-sizing: content-box;
+            background: url('img/t01.png') -800px -800px no-repeat;
+            _background: none;
+        }
+        
+        .jssort01-99-66 .pav .c {
+            top: 2px;
+            _top: 0px;
+            left: 2px;
+            _left: 0px;
+            width: 95px;
+            height: 62px;
+            border: #000 0px solid;
+            _border: #fff 2px solid;
+            background-position: 50% 50%;
+        }
+        
+        .jssort01-99-66 .p:hover .c {
+            top: 0px;
+            left: 0px;
+            width: 97px;
+            height: 64px;
+            border: #fff 1px solid;
+            background-position: 50% 50%;
+        }
+        
+        .jssort01-99-66 .p.pdn .c {
+            background-position: 50% 50%;
+            width: 95px;
+            height: 62px;
+            border: #000 2px solid;
+        }
+        
+        * html .jssort01-99-66 .c, * html .jssort01-99-66 .pdn .c, * html .jssort01-99-66 .pav .c {
+            /* ie quirks mode adjust */
+            width /**/: 99px;
+            height /**/: 66px;
+        }
+/*css code for single product*/
+.product-wrap{    font-size: 16px;
+    font-family: 'Avenir Next LT Pro Regular';
+    font-weight: bold;}
+
+.shapp_option_set{padding:0px;width:100%;}
+.option_type_id_220231{width:100%; background:#f2f2f2;padding:10px 2% 10px 2%;}
+.option_type_id_220231 textarea{height:150px;width:100%; outline:none !important;border:0px;background:#f2f2f2;color:#000000;}
+.option_type_id_220231 .shappify_option_name{font-size:16px;font-family:'Avenir Next LT Pro Regular';font-weight:bold}
+.option_type_id_220231 .shappify_option_name:before{content:'2';padding:0px 4px 0px 4px;font-size:13px;border-radius:70px;
+                           background:#6b6b6b;color:#ffffff;font-family:'Avenir Next LT Pro Regular';margin:0px 2% 0px 2%;}
+						   
+  
+                            .option_type_id_220220{margin-bottom:18px;width:100%; background:#f2f2f2;padding:10px 2% 10px 2%;margin-top:18px;margin-bottom:18px;}
+ .option_type_id_220220 .shappify_option_name{font-size:16px;font-family:'Avenir Next LT Pro Regular';font-weight:bold;margin-bottom:10px;}
+.option_type_id_220220 .shappify_option_name:before{content:'1';padding:0px 4px 0px 4px;font-size:13px;border-radius:70px;
+                           background:#6b6b6b;color:#ffffff;font-family:'Avenir Next LT Pro Regular';margin:0px 2% 0px 2%;}
+						  
+				
+
+.allLastWrap{width:100%; background-color:#f2f2f2;padding-top:5px;padding-bottom:5px;padding-left:5%;padding-right:5%;
+             margin-top:17px;margin-bottom:5px;}
+ .allLastWrap .product-quantity{float:left;width:48%;margin:0px auto; }
+ .allLastWrap .product-price{float:right;width:48%;}
+ .allLastWrap label{width:50% !important;font-weight:normal;}
+ .allLastWrap input[type='text'],.allLastWrap input[type='number']{width:100% !important;margin-left:-2%;height:30px;padding:0px;font-size:16px;font-weight:bold;text-align:right}
+  
+ .add-to-cart{margin:0px 21.5%;}
+ .add-to-cart input{width:100%;border-radius:15px !important;}
+ .product-wrap {padding-left:0px !importnt;width:100% Important;}
+
+     
+
+     .bold_option_child::-webkit-file-upload-button{visibility:hidden;}
+.bold_option_child{color:transparent}
+.bold_option_child::before{content:'click here For Packaging and Mount';color:#000000;position:relative;top:-10px;left:7.6%;font-size:13px}
+#enterQuantity{ font-size:19px;font-family:'Avenir Next LT Pro Regular';font-weight:bold;}
+     #enterQuantity::before{content:'3';padding:0px 4px 0px 4px;font-size:13px;border-radius:70px;
+                           background:#6b6b6b;color:#ffffff;font-family:'Avenir Next LT Pro Regular';margin:0px 2% 0px -3px;}
+ 
+ 
+   
+ 

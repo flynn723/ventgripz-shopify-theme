@@ -1,0 +1,122 @@
+<!-- bold-cart.liquid -->
+{% capture bold_cart_liquid %}
+{% comment %}
+BOLD-CART.LIQUID - Universal Bold Cart Updater  
+This file creates liquid variables to assist in updating line items in cart.liquid.   
+
+USED BY: Product Options, Product Builder, Recurring Orders
+REQUIRES: bold-cart-item.liquid, bold.css
+
+To use this file:
+* Include this file at the beginning of cart.liquid and before any quick-carts in your template 
+	Example: {% include 'bold-cart' %}
+
+
+* Make the following replacements. 
+	bold_cart_total_price        replaces	cart.total_price
+	bold_cart_item_count         replaces	cart.item_count
+
+* Follow the install instructions for your app to see where these variables need to be inserted
+  (See bold-cart-item.liquid for additional installation requirements)
+
+  PRODUCT OPTIONS
+    bold_cart_item_count             replaces 	cart.item_count
+    {{ bold_edit_in_cart }}          inserted	At the end of cart.liquid
+
+  RECURRING ORDERS
+    bold_cart_total_price            replaces	cart.total_price
+    {{ bold_ro_cart }}               inserted	Inside the cart form where you would like the Recurring Cart widget to appear
+
+  PRODUCT BUILDER
+    bold_cart_item_count             replaces 	cart.item_count
+    
+  BUY THE MEASURE
+    bold_cart_item_count             replaces 	cart.item_count
+
+{% endcomment %}
+
+{% assign is_mixed_cart = false %}
+{% assign bold_cart_total_price = 0 %}
+{% assign bold_cart_item_count =  0 %}
+
+{% for bold_cart_item in cart.items %}
+        {% comment %} Apps like Persistent Cart can kill apps like options by stripping out property fields. This is a mini-failsafe to catch most instances where priced options have become visible due to property stripping {% endcomment %}
+	{% if bold_cart_item.product.type == 'OPTIONS_HIDDEN_PRODUCT' and bold_cart_item.properties.builder_id == blank and bold_cart_item.properties._builder_id == blank %}
+	  <script>window.location.href='/cart/clear'</script>
+	{% endif %}
+        
+	{% include 'bold-cart-item' with bold_cart_item %}
+	{% if bold_hidden_item %}{% continue %}{% endif %}
+
+	{% assign bold_cart_total_price = bold_cart_total_price | plus: bold_item_line_price %}
+	
+	{% comment %} Update item count. Check first for BTM fields {% endcomment %}
+	{% if bold_cart_item.variant.metafields.bold_measurement.formula != blank %}
+	  {% if bold_cart_item.properties.quantity %}{% assign bold_cart_item_count  = bold_cart_item_count | plus: bold_cart_item.quantity %}
+	  {% else %}{% assign bold_cart_item_count  = bold_cart_item_count | plus: 1 %}
+	  {% endif %}
+	{% else %}
+	{% assign bold_cart_item_count  = bold_cart_item_count | plus: bold_cart_item.quantity %}
+        {% endif %}
+        
+	{% if is_mixed_cart == false and bold_cart_item.properties.frequency_type_text and bold_cart_item.properties.frequency_num %}
+		{% assign is_mixed_cart = true %}
+		<style>[name*="goto_"] { display:none !important }</style>
+	{% endif %}
+{% endfor %}
+
+{% comment %} Check to see if something went wrong - if we only have priced options left, clear the cart {% endcomment %}
+{% if bold_cart_item_count == 0 and cart.item_count > 0 %}<script>window.location.href = '/cart/clear';</script>{% endif %}
+
+{% capture bold_ro_cart %}
+  {% if shop.metafields.bold_rp.recurring_type == 0 or shop.metafields.bold_rp.recurring_type == 2 %}
+    <input name="shopify_customer_id" type="hidden" value="{{ customer.id }}" > 
+    <input name="email" type="hidden" value="{{ customer.email }}" > 
+    <input name="address1" type="hidden" value="{{ customer.default_address.address1 }}" > 
+    <input name="address2" type="hidden" value="{{ customer.default_address.address2 }}" > 
+    <input name="city" type="hidden" value="{{ customer.default_address.city }}" > 
+    <input name="company" type="hidden" value="{{ customer.default_address.company }}" > 
+    <input name="country" type="hidden" value="{{ customer.default_address.country }}" > 
+    <input name="first_name" type="hidden" value="{{ customer.default_address.first_name }}" > 
+    <input name="last_name" type="hidden" value="{{ customer.default_address.last_name }}" > 
+    <input name="phone" type="hidden" value="{{ customer.default_address.phone }}" > 
+    <input name="province" type="hidden" value="{{ customer.default_address.province }}" > 
+    <input name="zip" type="hidden" value="{{ customer.default_address.zip }}" >
+    <div class='product_rp_cart_div'></div>
+    <script>
+      $('.product_rp_cart_div').append('<script async class="generate_rp_cart" src="https://ro.boldapps.net/recurring_settings/generate_rp_cart?&shop_url={{ shop.permanent_domain }}&customer_id={{ customer.id }}&subtotal={{ cart.total_price }}"></'+''+'script>'); 
+    </script>
+  {% endif %}
+{% endcapture %}
+
+{% capture bold_edit_in_cart %}
+<script async src="//secure.apps.shappify.com/apps/options/bold_cart_handler.php?shop={{shop.permanent_domain}}"></script>
+<script>
+  function update_qty_builder(builder_id, qty){ 
+    jQuery('[data-bold-id="'+ builder_id +'"] [name*="updates"]').val(qty.value); 
+  } 
+  function remove_product_builder(builder_id){ 
+    jQuery('[data-bold-id="'+ builder_id +'"] [name*="updates"]').val(0); 
+    jQuery('[data-bold-id]').closest('form').submit(); 
+  }
+  function trigger_qty_update(){
+    setTimeout(function(){jQuery('.bold-master [name*="updates"]').trigger('change');}, 100);
+  }
+</script>
+<div class="modal fade" style="display: none;" id="bold-cart-modal" aria-labelledby="boldcartmodal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      	<div class="modal-body">
+        <div class="bold-image"></div>
+        <div class="bold-title"></div>
+        <div class="bold-price"></div>
+        <div class="bold-desc"></div>
+        <div class="bold-options"></div>
+    	</div>
+    </div>
+  </div>
+</div>
+{% endcapture %}
+
+<script>window['mixed_cart'] = {{ is_mixed_cart }};</script>
+{% endcapture %}{{ bold_cart_liquid | strip_newlines }}

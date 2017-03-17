@@ -1,0 +1,1385 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie10 lt-ie9" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="ie9 lt-ie10 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  {% if template == 'index' %}
+    <title>{{ shop.name }} | {{ page_title }}</title>
+  {% elsif template == '404' %}
+    <title>Page Not Found | {{ shop.name }}</title>
+  {% else %}
+    <title>{{ page_title }} | {{ shop.name }}</title>
+  {% endif %}
+
+  {% if page_description %}
+    <meta name="description" content="{{ page_description | escape }}" />
+  {% endif %}
+
+  <link rel="canonical" href="{{ canonical_url }}" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  {{ content_for_header }}
+
+  {% include 'social-meta' %}
+
+  <!-- Theme CSS -->
+  {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
+
+  <!-- Third Party JS Libraries -->
+  {{ 'modernizr-2.7.1.min.js' | asset_url | script_tag }}
+  {{ 'jquery-1.10.0.min.js' | asset_url | script_tag }}
+
+  {% include 'fonts' %}
+
+  <!-- Store object -->
+  {% include 'theme-options' %}
+
+  <style type="text/css">
+    {% assign hex2rgb_hex = settings.primary-button-background %}
+    {% include 'hex2rgb' %}
+    .add-to-cart-loader, .home-slideshow-loader, .product-slideshow-loader {
+      border-left:   3px solid rgba({{ hex2rgb_r }}, {{ hex2rgb_g }}, {{ hex2rgb_b }}, .15);
+      border-right:  3px solid rgba({{ hex2rgb_r }}, {{ hex2rgb_g }}, {{ hex2rgb_b }}, .15);
+      border-bottom: 3px solid rgba({{ hex2rgb_r }}, {{ hex2rgb_g }}, {{ hex2rgb_b }}, .15);
+      border-top:    3px solid rgba({{ hex2rgb_r }}, {{ hex2rgb_g }}, {{ hex2rgb_b }}, .8);
+    }
+    {% assign hex2rgb_hex = settings.primary-button-color %}
+    {% include 'hex2rgb' %}
+    .header-drawer h1, .header-drawer .navigation .primary ul {
+      border-color: {{settings.primary-button-color}};
+      border-color: rgba({{ hex2rgb_r }}, {{ hex2rgb_g }}, {{ hex2rgb_b }}, .3);
+    }
+    {% assign hex2rgb_hex = settings.footer-accent-color %}
+    {% include 'hex2rgb' %}
+    .copyright, .payment-options {
+      color: rgba({{ hex2rgb_r }}, {{ hex2rgb_g }}, {{ hex2rgb_b }}, .5);
+    }
+    .spread-the-word .footer-share-icon {
+      background: rgba({{ hex2rgb_r }}, {{ hex2rgb_g }}, {{ hex2rgb_b }}, .7);
+    }
+    .spread-the-word .footer-share-icon:hover {
+      background: rgba({{ hex2rgb_r }}, {{ hex2rgb_g }}, {{ hex2rgb_b }}, .9);
+    }
+
+    {% if settings.custom-css != blank %}
+      {{ settings.custom-css }}
+    {% endif %}
+  </style>
+  <script type='text/javascript' src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js?ver=4.4'></script>
+</head>
+
+<body class="{% if customer %}customer-logged-in{% endif %} template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }} navigation-{{ settings.header-navigation-location }} {% if template == 'product.slideshow' %}template-product-slideshow{% endif %}" >
+
+  {% include 'header' %}
+
+  <main class="main-content {% if template contains 'collection' and collection.image and settings.collection-show-featured-image %}{% unless template contains 'list-collections' %}collection-has-featured-image{% endunless %}{% endif %}" role="main">
+
+    {% unless template contains 'index' or fullBleed %}
+      {% unless template contains 'slideshow' and settings.product-slideshow-layout == 'full-width' %}
+        {% include 'breadcrumbs' %}
+      {% endunless %}
+    {% endunless %}
+
+    {{ content_for_layout }}
+  </main>
+
+  {% include 'footer' %}
+
+  <!-- Scripts -->
+  {{ 'api.jquery.js' | shopify_asset_url | script_tag }}
+
+  {% if template contains 'cart' %}
+
+    {% if settings.show-shipping-calculator %}
+      {{ "//ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js" | script_tag }}
+      {{ "/services/javascripts/countries.js" | script_tag }}
+      {{ "shopify_common.js" | shopify_asset_url | script_tag }}
+    {% endif %}
+
+    {{ 'jquery.cart.min.js' | asset_url | script_tag }}
+  {% endif %}
+
+  {% if template contains 'customers' %}
+    {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+    {{ 'customer_area.js'  | shopify_asset_url | script_tag }}
+  {% endif %}
+
+  {% if settings.show-currency-switcher %}
+    {{ "//cdn.shopify.com/s/javascripts/currencies.js" | script_tag }}
+    {{ "jquery.currencies.js" | asset_url | script_tag }}
+  {% endif %}
+
+  {{ 'option_selection.js' | shopify_asset_url | script_tag }}
+
+  {{ 'plugins.js'  | asset_url | script_tag }}
+  {{ 'site.js'  | asset_url | script_tag }}
+
+{% include 'easyorder' %}
+<!-- Start of justin@justinestrada.com 's customization -->
+<style type="text/css">
+/* Shopify Overrides */
+.button, .submit, button, input[type="submit"], input[type="button"] {
+  border-radius: 0px;
+}
+h1.page-title {
+    word-wrap: break-word;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 50px;
+}
+/* Font Awesome Icon initialization */
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/fonts/fontawesome-webfont.eot?v=4.5.0');
+  src: url('//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/fonts/fontawesome-webfont.eot?#iefix&v=4.5.0') format('embedded-opentype'), url('//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/fonts/fontawesome-webfont.woff2?v=4.5.0') format('woff2'), url('//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/fonts/fontawesome-webfont.woff?v=4.5.0') format('woff'), url('//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/fonts/fontawesome-webfont.ttf?v=4.5.0') format('truetype'), url('//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/fonts/fontawesome-webfont.svg?v=4.5.0#fontawesomeregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+.fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.fa-cart-plus:before {
+  content: "\f217";
+}
+.fa-cart-arrow-down:before {
+  content: "\f218";
+}
+.fa-shopping-cart:before {
+  content: "\f07a";
+}
+
+/* Framework initializations */
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/fonts/glyphicons-halflings-regular.eot');
+  src: url('//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/fonts/glyphicons-halflings-regular.woff') format('woff'), url('//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+.glyphicon {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.container{
+    padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto;
+}
+@media (max-width: 991px){
+  .sm-only {
+    display: block;
+  }
+  .md-only {
+    display: none;
+  }
+  .hidden-md {
+    display: none;
+  }
+}
+@media (min-width: 992px){
+  .sm-only {
+    display: none;
+  }
+  .md-only {
+    display: block;
+  }
+}
+@media (min-width:768px) {
+    .container{
+        width:750px;
+    }
+}
+@media (min-width:992px){
+    .container {
+        width:970px;
+    }
+}
+@media (min-width:1200px) {
+    .container{
+        /*width:1170px;*/
+        width: 1230px;
+    }
+}
+.container-fluid{
+    padding-right:15px;
+    padding-left:15px;
+    margin-right:auto;margin-left:auto
+}
+.row {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+@media (max-width: 720px){
+  .xs-row {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+}
+.clearfix:before,
+.clearfix:after,
+.container:before,
+.container:after,
+.row:before,
+.row:after,
+.xs-row:before,
+.xs-row:after {
+  display: table;
+  content: " ";
+}
+.container:after,
+.clearfix:after,
+.row:after,
+.xs-row:after {
+  clear: both;
+}
+.col-xs-1,
+.col-xs-2,
+.col-xs-5ths,
+.col-xs-3,
+.col-xs-4,
+.col-xs-6,
+.col-xs-8,
+.col-xs-9,
+.col-xs-10,
+.col-xs-12,
+.col-sm-2,
+.col-sm-3,
+.col-sm-4,
+.col-sm-5,
+.col-sm-6,
+.col-sm-7,
+.col-sm-8,
+.col-sm-10,
+.col-md-5,
+.col-md-7 {
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+.col-xs-1 {
+  width: 8.33333%;
+}
+.col-xs-2 {
+  width: 16.66666667%;
+}
+.col-xs-5ths {
+  width: 20%;
+}
+.col-xs-3 {
+  width: 25%;
+}
+.col-xs-4 {
+  width: 33.33333333%;
+}
+.col-xs-6 {
+    width: 50%;
+}
+.col-xs-8 { 
+  width: 66.66666667%;
+}
+.col-xs-9 {
+  width: 75%;
+}
+.col-xs-10 {
+  width: 83.33333333%;
+}
+.col-xs-12 {
+  width: 100%;
+}
+.col-xs-1, .col-xs-2, .col-xs-5ths, .col-xs-3, .col-xs-4, .col-xs-6, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-12,
+.col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-10,
+.col-md-5, .col-md-7 {
+  float: left;
+}
+@media (min-width: 721px) {
+  .col-sm-2 {
+    width: 16.66666667%;
+  }
+  .col-sm-3 {
+    width: 25%;
+  }
+  .col-sm-4 {
+    width: 33.33333333%;
+  }
+  .col-sm-5 {
+    width: 41.66666667%;
+  }
+  .col-sm-6 {
+    width: 50%;
+  }
+  .col-sm-7 {
+    width: 58.33333333%;
+  }
+  .col-sm-8 {
+    width: 66.66666667%;
+  }
+  .col-sm-10 {
+    width: 83.33333333%;
+  }
+}
+@media (min-width: 992px){
+  .col-md-5 {
+    width: 41.66666667%;
+  }
+  .col-md-6 {
+    width: 50%;
+  }
+  .col-md-7 {
+    width: 58.33333333%;
+  }
+}
+/* Bootstrap Nav */
+.nav {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+.nav > li {
+  position: relative;
+  display: block;
+}
+.nav > li > a {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+}
+.nav > li > a:hover,
+.nav > li > a:focus {
+  text-decoration: none;
+  background-color: #eee;
+}
+.nav > li.disabled > a {
+  color: #777;
+}
+.nav > li.disabled > a:hover,
+.nav > li.disabled > a:focus {
+  color: #777;
+  text-decoration: none;
+  cursor: not-allowed;
+  background-color: transparent;
+}
+.nav .open > a,
+.nav .open > a:hover,
+.nav .open > a:focus {
+  background-color: #eee;
+  border-color: #337ab7;
+}
+.nav .nav-divider {
+  height: 1px;
+  margin: 9px 0;
+  overflow: hidden;
+  background-color: #e5e5e5;
+}
+.nav > li > a > img {
+  max-width: none;
+}
+.nav-tabs {
+  border-bottom: 1px solid #ddd;
+}
+.nav-tabs > li {
+  float: left;
+  margin-bottom: -1px;
+}
+.nav-tabs > li > a {
+  margin-right: 2px;
+  line-height: 1.42857143;
+  border: 1px solid transparent;
+  border-radius: 0;
+}
+.nav-tabs > li > a:hover {
+  border-color: #eee #eee #ddd;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  color: #555;
+  cursor: default;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-bottom-color: transparent;
+}
+.nav-tabs.nav-justified {
+  width: 100%;
+  border-bottom: 0;
+}
+.nav-tabs.nav-justified > li {
+  float: none;
+}
+.nav-tabs.nav-justified > li > a {
+  margin-bottom: 5px;
+  text-align: center;
+}
+.nav-tabs.nav-justified > .dropdown .dropdown-menu {
+  top: auto;
+  left: auto;
+}
+@media (min-width: 768px) {
+  .nav-tabs.nav-justified > li {
+    display: table-cell;
+    width: 1%;
+  }
+  .nav-tabs.nav-justified > li > a {
+    margin-bottom: 0;
+  }
+}
+.nav-tabs.nav-justified > li > a {
+  margin-right: 0;
+  border-radius: 4px;
+}
+.nav-tabs.nav-justified > .active > a,
+.nav-tabs.nav-justified > .active > a:hover,
+.nav-tabs.nav-justified > .active > a:focus {
+  border: 1px solid #ddd;
+}
+@media (min-width: 768px) {
+  .nav-tabs.nav-justified > li > a {
+    border-bottom: 1px solid #ddd;
+    border-radius: 4px 4px 0 0;
+  }
+  .nav-tabs.nav-justified > .active > a,
+  .nav-tabs.nav-justified > .active > a:hover,
+  .nav-tabs.nav-justified > .active > a:focus {
+    border-bottom-color: #fff;
+  }
+}
+.tab-content > .tab-pane {
+  display: none;
+}
+.tab-content > .active {
+  display: block;
+  padding: 5px;
+}
+/* Bootstrap Modal */
+.close {
+  float: right;
+  font-size: 21px;
+  font-weight: bold;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  filter: alpha(opacity=20);
+  opacity: .2;
+}
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+  filter: alpha(opacity=50);
+  opacity: .5;
+}
+button.close {
+  -webkit-appearance: none;
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+}
+.modal-open {
+  overflow: hidden;
+}
+.modal {
+  position: fixed;
+  top: 15%;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1050;
+  display: none;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+  outline: 0;
+}
+.modal.fade .modal-dialog {
+  -webkit-transition: -webkit-transform .3s ease-out;
+       -o-transition:      -o-transform .3s ease-out;
+          transition:         transform .3s ease-out;
+  -webkit-transform: translate(0, -25%);
+      -ms-transform: translate(0, -25%);
+       -o-transform: translate(0, -25%);
+          transform: translate(0, -25%);
+}
+.modal.in .modal-dialog {
+  -webkit-transform: translate(0, 0);
+      -ms-transform: translate(0, 0);
+       -o-transform: translate(0, 0);
+          transform: translate(0, 0);
+}
+.modal-open .modal {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.modal-dialog {
+  position: relative;
+  width: auto;
+  margin: 10px;
+}
+.modal-content {
+  position: relative;
+  background-color: #fff;
+  -webkit-background-clip: padding-box;
+          background-clip: padding-box;
+  border: 1px solid #999;
+  border: 1px solid rgba(0, 0, 0, .2);
+  border-radius: 6px;
+  outline: 0;
+  -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+          box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+}
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: #000;
+}
+.modal-backdrop.fade {
+  filter: alpha(opacity=0);
+  opacity: 0;
+}
+.modal-backdrop.in {
+  filter: alpha(opacity=50);
+  opacity: .5;
+}
+.modal-header {
+  min-height: 16.42857143px;
+  padding: 15px;
+  border-bottom: 1px solid #e5e5e5;
+}
+.modal-header .close {
+  margin-top: -2px;
+}
+.modal-title {
+  margin: 0;
+  line-height: 1.42857143;
+}
+.modal-body {
+  position: relative;
+  padding: 15px;
+}
+.modal-footer {
+  padding: 15px;
+  text-align: right;
+  border-top: 1px solid #e5e5e5;
+}
+.modal-footer .btn + .btn {
+  margin-bottom: 0;
+  margin-left: 5px;
+}
+.modal-footer .btn-group .btn + .btn {
+  margin-left: -1px;
+}
+.modal-footer .btn-block + .btn-block {
+  margin-left: 0;
+}
+.modal-scrollbar-measure {
+  position: absolute;
+  top: -9999px;
+  width: 50px;
+  height: 50px;
+  overflow: scroll;
+}
+@media (min-width: 768px) {
+  .modal-dialog {
+    width: 600px;
+    margin: 30px auto;
+  }
+  .modal-content {
+    -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+  }
+  .modal-sm {
+    width: 300px;
+  }
+}
+@media (min-width: 992px) {
+  .modal-lg {
+    width: 900px;
+  }
+}
+/* general styling */
+.text-center {
+    text-align: center;
+}
+.full-width {
+  width: 100%;
+}
+.no-padding,
+.padding-0 {
+    padding: 0px;
+}
+.padding-top-30 {
+  padding-top: 30px;
+}
+.margin-center {
+  display: block;
+  margin: 0px auto;
+}
+.margin-bottom-30px {
+  margin-bottom: 30px;
+}
+/* colors */
+.light-blue-clr {
+    color: #19c7db !important;
+}
+/* elements */
+.header-tools .navigation a {
+    color: #1f1f1f;
+    margin: 13px 20px;
+    padding: 0 0 5px 0;
+    /*border-bottom: 1px solid #000;*/
+}
+.header-tools .navigation a:hover,
+.header-tools .navigation a:focus {
+    /*border-bottom: 1px solid #19c7db;*/
+}
+.header-actions a.cart-link {
+    font-size: 28px;
+}
+.home-slideshow .slide-text .button {
+  display: block;
+}
+.home-slideshow .slide-text .home-btn-adjusted {
+    position: absolute;
+    left: 15px !important;
+}
+.home-slideshow .slide-text .home-btn-adjusted .input-wrapper.product-quantity {
+  display: none;
+}
+.home-full-width-feature h1 {
+    font-size: 35px;
+    text-transform: uppercase;
+}
+.home-full-width-feature h1:first-child {
+    letter-spacing: 2px;
+}
+@media (min-width: 1500px){
+  .home-slideshow .slide-text .button {
+      /* left: -135px !important; */
+  } 
+}
+/* Remove Breadcrumbs */
+.main-content .breadcrumbs {
+    display: none;
+}
+.ventgripz-fb-product-container {
+    margin-top: 20px;
+}
+.cust-cart-item-quantity-css {
+    border: solid #19C7DB 2px !important;
+    padding: 10px 5px !important;
+    width: 60px !important;
+}
+.company-branding-three-ventgrip-img-display-row img {
+    max-width: 700px;
+    margin: 10px auto;
+    display: block;
+}
+.width-75-percent-important {
+  width: 75% !important;
+}
+.max-width-80px {
+    max-width: 80px;
+}
+/* element styling */
+.custom-adjust-main-content {
+  max-width: 1200px; padding-top: 30px;
+}
+.custom-adjust-main-content
+.company-branding-page-slide {
+    margin-bottom: 0px;
+}
+.custom-adjust-main-content #viewing-home-slide-1 {
+    margin-bottom: 0px;
+}
+.company-branding-three-ventgrip-img-display-row {
+  margin-bottom: 50px;
+}
+.product-wrap-adjusted {
+    width: 100%;
+  max-width: 700px;
+}
+.new-slider-img-wrapper {
+  width: 100%;
+  max-width: 700px;
+  margin: 10px auto;
+}
+.new-slider-img-wrapper img {
+  width: 100%;
+  display: block;
+}
+.ventgripz-logo-facebook-product {
+    display: block;
+    width: 70%;
+    margin: 10px auto;
+}
+.important-adjustment-center-add-btn {
+    width: 100%;
+    max-width: 166px;
+    margin: 10px auto;
+    display: block;
+}
+@media (min-width: 992px){
+  .md-important-adjustment-center-add-btn {
+      width: 100%;
+      max-width: 166px;
+      margin: 10px auto;
+      display: block;
+  }
+}
+@media (max-width: 720px){
+  /* shopify breakpoint */
+  .xs-font-size-35 {
+    font-size: 35px;
+  }  
+}
+@media (min-width: 768px){
+  .ventgripz-fb-product-container {
+      margin-top: 30px;
+  }
+  .form-sm-font-size-18 tr,
+  .form-sm-font-size-18 th {
+        font-size: 18px;
+  }
+}
+/* Ventgripz Facebook Product Elements */
+
+.fb-product-main-img-col,
+.fb-product-asset-col-1,
+.fb-product-asset-col-2,
+.fb-product-asset-col-3,
+.fb-product-asset-col-4 {
+  cursor: pointer;
+}
+.fb-product-title-wrapper {
+    margin-top: 20px ;
+    margin-bottom: 0;
+    text-align: left;
+}
+.fb-product-title-wrapper h2 {
+    margin: 0 auto;
+    color: #000;
+    font-size: 22px;
+    font-weight: 500;
+}
+.fb-product-title-wrapper h4 {
+    margin: 5px auto;
+    color: #000;
+    font-size: 20px;
+    font-weight: 200;
+}
+.fb-product-desc-line {
+    width: 60%;
+}
+.fb-product-price-wrapper {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: -20px;
+    color: #000;
+    font-size: 22px;
+    text-align: left;
+    font-weight: 200;
+}
+.fb-product-nav-tabs {
+    display: block;
+    width: 100%;
+}
+.fb-product-nav-tabs li {
+    width: 25%;
+}
+.fb-product-nav-tabs li a {
+    padding: 9px 0px !important;
+    text-align: center;
+    word-wrap: break-word;
+}
+@media (min-width: 1200px){
+/*  .fb-product-nav-tabs li a {
+      padding: 15px 0px !important;
+  }*/  
+}
+/*.fb-product-desc-tabs-wrapper .nav-tabs > li:nth-child(2) a {
+    padding: 7px 0 !important;
+}*/
+.fb-product-desc-tabs-wrapper .nav-tabs > li a {
+    background: #EFEEEE; min-height: 30px; font-size: 9px;
+}
+@media (min-width: 500px){
+.fb-product-desc-tabs-wrapper .nav-tabs > li a {font-size: 14px;
+}
+}
+.fb-product-desc-tabs-wrapper .nav-tabs > li.active a {
+    background: #fff;
+    color: #19c7db;
+}
+.fb-product-desc-tabs-wrapper .tab-content {
+    display: block;
+    border-left: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+@media (min-width: 992px ){
+  .fb-product-title-wrapper {
+      margin: 20px auto;
+      text-align: center;
+  }
+  .fb-product-title-wrapper h2 {
+      font-weight: 200;
+  }
+} 
+@media (min-width: 992px){
+  .fb-product-price-wrapper {
+      text-align: center;
+  }
+  .md-padding-right-0-important {
+    padding-right: 0 !important;
+  }
+  .md-and-up-hiden {
+    display: none;
+  }
+}
+.page-title {
+    text-align: center;
+    width: 50%;
+    margin: 0 auto 45px;
+}
+hr.after-page-title-line {
+    height: 1px;
+    background: #d7d9d9;
+    border: none;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 45px;
+}
+@media (max-width: 721px){
+  .home-slideshow .slide-text .button {
+    display: none;
+  }
+}
+.mobile-stationary-slide-btn {
+    margin: 0 auto;
+    display: block;
+    width: 100%;
+    max-width: 175px;
+    text-align: center;
+}
+@media (min-width: 722px){
+  .mobile-stationary-slide-btn {
+    display: none;
+  }  
+.home-slideshow .slide-text .button {
+  display: block; max-width: 200px;
+}
+.sm-and-up-hidden {
+  display: none;
+}
+}
+@media (max-width: 720px){
+  .home-slideshow-wrapper {
+      margin-bottom: 30px;
+  }
+  .hidden-xs {
+    display: none;
+  }
+}
+@media (max-width: 720px){
+  .main-header.adjusted-header {
+    padding: 5px 15px;
+  }
+  .main-header.adjusted-header .logo-regular {
+      width: 100%;
+      max-width: 150px;
+      display: block;
+      margin: 0;
+      float: left;
+  }
+  .main-header.adjusted-header .header-tools {
+    margin-top: 0; float: right; margin-right: -15px;
+  }
+  .main-header.adjusted-header .drawer-toggle {
+    float: left;
+    margin: 11px 0;   
+  }
+}
+@media (max-width: 721px){
+  .template-index .header-actions {
+      width: 100%;
+      max-width: 115px;
+      margin: 0 auto;
+  }
+  .template-index .header-actions a.cart-link {
+      float: right; position: relative; top: -5px;
+  }
+  .template-index .header-actions a.cart-link .cart-count {
+      top: 8px !important; 
+  }
+
+}
+@media (max-width: 991px){
+  .ventgripz-fb-product-container .product-form-submit-wrap input {
+    text-transform: initial;     padding: 0px 40px;
+  } 
+  .important-adjustment-mobile-full-width-add-btn input[type="submit"] {
+      width: 100%;
+      font-weight: 300;
+      font-size: 1.75em;
+  }
+
+  .important-adjustment-mobile-full-width-add-btn {
+      width: 100%;
+  }
+  .add-to-cart.loading {
+    z-index: 99;
+  }
+
+}
+.fb-product-desc-tabs-wrapper .tab-content p {
+    margin-top: 3px;
+    margin-bottom: 0px;
+    font-size: 12px;
+}
+.fb-product-desc-tabs-wrapper .tab-content ul {
+    list-style: initial;
+  font-size: 12px;
+    margin: 0 0 0 15px;
+}
+.fb-product-desc-tabs-wrapper .tab-content ul li {
+    margin: 3px 0;
+}
+@media (min-width: 992px){
+  .fb-product-desc-tabs-wrapper .tab-content p {
+      font-size: 14px;
+  }
+  .fb-product-desc-tabs-wrapper .tab-content ul {
+    font-size: 14px;
+  }
+}
+</style>
+<style type="text/css">
+#blogReelCarousel .carousel-inner .active.left { left: -33%; }
+#blogReelCarousel .carousel-inner .next        { left:  33%; }
+#blogReelCarousel .carousel-inner .prev        { left: -33%; }
+#blogReelCarousel .carousel-control.left,
+#blogReelCarousel .carousel-control.right {
+  background-image:none;
+}
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.carousel {
+  position: relative;
+}
+.carousel-inner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+.carousel-inner > .item {
+  position: relative;
+  display: none;
+  -webkit-transition: .6s ease-in-out left;
+       -o-transition: .6s ease-in-out left;
+          transition: .6s ease-in-out left;
+}
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+  line-height: 1;
+}
+@media all and (transform-3d), (-webkit-transform-3d) {
+  .carousel-inner > .item {
+    -webkit-transition: -webkit-transform .6s ease-in-out;
+         -o-transition:      -o-transform .6s ease-in-out;
+            transition:         transform .6s ease-in-out;
+
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+    -webkit-perspective: 1000px;
+            perspective: 1000px;
+  }
+  .carousel-inner > .item.next,
+  .carousel-inner > .item.active.right {
+    left: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+            transform: translate3d(100%, 0, 0);
+  }
+  .carousel-inner > .item.prev,
+  .carousel-inner > .item.active.left {
+    left: 0;
+    -webkit-transform: translate3d(-100%, 0, 0);
+            transform: translate3d(-100%, 0, 0);
+  }
+  .carousel-inner > .item.next.left,
+  .carousel-inner > .item.prev.right,
+  .carousel-inner > .item.active {
+    left: 0;
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+}
+.carousel-inner > .active,
+.carousel-inner > .next,
+.carousel-inner > .prev {
+  display: block;
+}
+.carousel-inner > .active {
+  left: 0;
+}
+.carousel-inner > .next,
+.carousel-inner > .prev {
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.carousel-inner > .next {
+  left: 100%;
+}
+.carousel-inner > .prev {
+  left: -100%;
+}
+.carousel-inner > .next.left,
+.carousel-inner > .prev.right {
+  left: 0;
+}
+.carousel-inner > .active.left {
+  left: -100%;
+}
+.carousel-inner > .active.right {
+  left: 100%;
+}
+.carousel-control {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 15%;
+  font-size: 20px;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
+  background-color: rgba(0, 0, 0, 0);
+  filter: alpha(opacity=50);
+  opacity: .5;
+}
+.carousel-control.left {
+  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, .0001) 100%);
+  background-image:      -o-linear-gradient(left, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, .0001) 100%);
+  background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, .5)), to(rgba(0, 0, 0, .0001)));
+  background-image:         linear-gradient(to right, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, .0001) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#00000000', GradientType=1);
+  background-repeat: repeat-x;
+}
+.carousel-control.right {
+  right: 0;
+  left: auto;
+  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, .0001) 0%, rgba(0, 0, 0, .5) 100%);
+  background-image:      -o-linear-gradient(left, rgba(0, 0, 0, .0001) 0%, rgba(0, 0, 0, .5) 100%);
+  background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, .0001)), to(rgba(0, 0, 0, .5)));
+  background-image:         linear-gradient(to right, rgba(0, 0, 0, .0001) 0%, rgba(0, 0, 0, .5) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=1);
+  background-repeat: repeat-x;
+}
+.carousel-control:hover,
+.carousel-control:focus {
+  color: #fff;
+  text-decoration: none;
+  filter: alpha(opacity=90);
+  outline: 0;
+  opacity: .9;
+}
+.carousel-control .icon-prev,
+.carousel-control .icon-next,
+.carousel-control .glyphicon-chevron-left,
+.carousel-control .glyphicon-chevron-right {
+  position: absolute;
+  top: 50%;
+  z-index: 5;
+  display: inline-block;
+  margin-top: -10px;
+}
+.carousel-control .icon-prev,
+.carousel-control .glyphicon-chevron-left {
+  left: 50%;
+  margin-left: -10px;
+}
+.carousel-control .icon-next,
+.carousel-control .glyphicon-chevron-right {
+  right: 50%;
+  margin-right: -10px;
+}
+.carousel-control .icon-prev,
+.carousel-control .icon-next {
+  width: 20px;
+  height: 20px;
+  font-family: serif;
+  line-height: 1;
+}
+.carousel-control .icon-prev:before {
+  content: '\2039';
+}
+.carousel-control .icon-next:before {
+  content: '\203a';
+}
+.carousel-indicators {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  z-index: 15;
+  width: 60%;
+  padding-left: 0;
+  margin-left: -30%;
+  text-align: center;
+  list-style: none;
+}
+.carousel-indicators li {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 1px;
+  text-indent: -999px;
+  cursor: pointer;
+  background-color: #000 \9;
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid #fff;
+  border-radius: 10px;
+}
+.carousel-indicators .active {
+  width: 12px;
+  height: 12px;
+  margin: 0;
+  background-color: #fff;
+}
+
+@media screen and (min-width: 768px) {
+  .carousel-control .glyphicon-chevron-left,
+  .carousel-control .glyphicon-chevron-right,
+  .carousel-control .icon-prev,
+  .carousel-control .icon-next {
+    width: 30px;
+    height: 30px;
+    margin-top: -10px;
+    font-size: 30px;
+  }
+  .carousel-control .glyphicon-chevron-left,
+  .carousel-control .icon-prev {
+    margin-left: -10px;
+  }
+  .carousel-control .glyphicon-chevron-right,
+  .carousel-control .icon-next {
+    margin-right: -10px;
+  }
+  .carousel-caption {
+    right: 20%;
+    left: 20%;
+    padding-bottom: 30px;
+  }
+  .carousel-indicators {
+    bottom: 20px;
+  }
+}
+#blogReelCarousel .carousel-inner .active.left { left: -33%; }
+#blogReelCarousel .carousel-inner .next        { left:  33%; }
+#blogReelCarousel .carousel-inner .prev        { left: -33%; }
+#blogReelCarousel .carousel-control.left,
+#blogReelCarousel .carousel-control.right {
+  background-image:none;
+}
+/**/
+.header-drawer .drawer-toggle {
+    top: 35px;
+}
+</style>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+  /* scope: general site wide customization */
+  
+  jQuery('.home-slideshow .slide-text .button').attr('href', 'https://ventgripz.com/products/1-pack-ventgripz');
+
+  changeShippingAlertText=setInterval(function(){
+    if ( jQuery('#fsb_bar').length > 0 ) {
+      jQuery('#fsb_bar').text('FREE U.S. SHIPPING'); 
+      clearInterval(changeShippingAlertText);
+    }
+  },500);
+
+  var cartCount = parseInt(jQuery('header .cart-link .cart-count').text());
+  jQuery('header .cart-link').html('<i class="fa fa-shopping-cart"></i><span class="cart-count">'+cartCount+'</span>');
+  jQuery('header .cart-link .cart-count').css('top', '10px');
+
+  jQuery('.page-title').after('<hr class="after-page-title-line"/>');
+  jQuery('.product-form-submit-wrap input[type="submit"]').attr('value','Add To Cart');
+
+  jQuery('img.logo-regular').attr('src', 'https://cdn.shopify.com/s/files/1/0895/4184/files/ventgripz-main-logo.jpg');
+
+  /* scope: individual page customization */
+  var pageURI = location.href;
+  console.log('The page URI you\'re on is: '+pageURI);
+
+  if ( pageURI == 'http://ventgripz.com/' ){
+    console.log('inside homepage');
+        jQuery.getScript( "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js?ver=4.4", function( data, textStatus, jqxhr ) {
+    /* console.log( data ); */ /* Data returned */
+    /* console.log( textStatus ); */ /* Success */
+    /* console.log( jqxhr.status ); */ /* 200 */
+    console.log( "Loaded bootstrap JS" );
+    /* Homepage Bottom Slider */
+          /*
+jQuery('body > main > div:nth-child(6)').html('<div id="blogReelCarousel" class="carousel slide"><div class="carousel-inner"></div></div>');
+var imgURLs = ["https://cdn.shopify.com/s/files/1/0895/4184/files/DSC00695_edit_copy.jpg",
+                "https://cdn.shopify.com/s/files/1/0895/4184/files/DSC00714_edit_copy.jpg",
+                "https://cdn.shopify.com/s/files/1/0895/4184/files/DSC01100_edit_copy.jpg",
+                "https://cdn.shopify.com/s/files/1/0895/4184/files/DSC01121_edit_copy.jpg",
+                "https://cdn.shopify.com/s/files/1/0895/4184/files/DSC01140_edit_copy.jpg",
+                "https://cdn.shopify.com/s/files/1/0895/4184/files/DSC01148_edit_copy.jpg",
+                "https://cdn.shopify.com/s/files/1/0895/4184/files/DSC01158_edit_copy.jpg",
+                "https://cdn.shopify.com/s/files/1/0895/4184/files/DSC01162_edit_copy.jpg",
+                "https://cdn.shopify.com/s/files/1/0895/4184/files/DSC01185_EDIT_copy.jpg",
+                "https://cdn.shopify.com/s/files/1/0895/4184/files/DSC01191_edit_copy.jpg",
+                "https://cdn.shopify.com/s/files/1/0895/4184/files/DSC01205_edit_copy.jpg",
+                "https://cdn.shopify.com/s/files/1/0895/4184/files/DSC01224_copy.jpg",
+                "https://cdn.shopify.com/s/files/1/0895/4184/files/DSC01742_edit_copy.jpg",
+                "https://cdn.shopify.com/s/files/1/0895/4184/files/DSC01746_edit_copy.jpg",
+                "https://cdn.shopify.com/s/files/1/0895/4184/files/DSC01753_edit_copy_2.jpg",
+                "https://cdn.shopify.com/s/files/1/0895/4184/files/DSC01758_edit_copy.jpg",
+                "https://cdn.shopify.com/s/files/1/0895/4184/files/DSC01765_edit_copy.jpg",
+                "https://cdn.shopify.com/s/files/1/0895/4184/files/DSC01768_edit_copy.jpg",
+                "https://cdn.shopify.com/s/files/1/0895/4184/files/DSC01808_edit_copy_2.jpg",
+                "https://cdn.shopify.com/s/files/1/0895/4184/files/DSC01809_edit_copy.jpg"];
+for (var i = 0; i < 19; i++) {
+  if (i == 0){
+    jQuery('#blogReelCarousel .carousel-inner').append('<div class="item active"><div class="col-xs-4"><img src="'+imgURLs[0]+'" class="full-width" alt="VentGripz"></div></div>');
+  } else {
+    jQuery('#blogReelCarousel .carousel-inner').append('<div class="item"><div class="col-xs-4"><img src="'+imgURLs[i]+'" class="full-width" alt="VentGripz"></div></div>');
+  }
+}
+jQuery('#blogReelCarousel .carousel-inner').append('<a class="left carousel-control" href="#blogReelCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left">&#10094;</i></a><a class="right carousel-control" href="#blogReelCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right">&#10095;</i></a></div>');
+
+*/
+/* Turns #blogReelCarousel into a three post at a time carousel */
+jQuery('#blogReelCarousel').carousel({
+  interval: 3000
+});
+jQuery('#blogReelCarousel.carousel .item').each(function(){
+  var next = jQuery(this).next();
+  if (!next.length) {
+    next = jQuery(this).siblings(':first');
+  }
+  next.children(':first-child').clone().appendTo(jQuery(this));
+  
+  if (next.next().length>0) {
+    next.next().children(':first-child').clone().appendTo(jQuery(this));
+  }
+  else {
+    jQuery(this).siblings(':first').children(':first-child').clone().appendTo(jQuery(this));
+  }
+});
+
+    });
+    function shouldTheHomeSlideBuyNowBtnBeMoved(){
+      var windowWidth = window.innerWidth;
+
+      if ( windowWidth >= 721 ) {
+        jQuery('.home-slideshow .slide-text .button').addClass('home-btn-adjusted'); 
+      } else {
+        jQuery('.home-slideshow .slide-text .button').removeClass('home-btn-adjusted');
+      } 
+    }
+    jQuery('.home-slideshow .slide-text .button').hide();
+    /* on load */  shouldTheHomeSlideBuyNowBtnBeMoved();
+    /* on resize */
+    jQuery(window).resize(function(){
+      shouldTheHomeSlideBuyNowBtnBeMoved();
+    });
+    var butItNowBtn = jQuery('#home-slide-1 .slide-text .button').clone();
+    jQuery('.home-slideshow-wrapper').after(butItNowBtn);
+    jQuery('.home-slideshow-wrapper + .button').addClass('mobile-stationary-slide-btn');
+        
+    jQuery('.home-slide .button').text('Add To Cart');
+    /* Cause the other fucking button didnt work */
+    jQuery('.home-slide .slide-text').html('<form class="product-form home-btn-adjusted" action="/cart/add" method="post"><input type="hidden" name="id" class="product-select" value="18246378883" data-variant-title="Default Title"><div class="input-wrapper product-quantity visible"><label for="quantity">Quantity</label><input type="text" name="quantity" id="quantity" value="1"></div><div class="add-to-cart express"><div class="product-form-submit-wrap"><input type="submit" value="Add To Cart"><div class="add-to-cart-loader"></div></div><p class="product-add-success-message"><span class="added-product-name"></span> has been successfully added to your <a href="/cart">cart</a>. Feel free to <a href="/collections/all">continue shopping</a> or <a href="/checkout">check out</a>.</p><p class="product-add-error-message"></p></div></form>');
+
+
+
+  } else if ( pageURI.indexOf('http://ventgripz.com/products/company-branding-1') != -1 ){
+    jQuery('main.main-content').addClass('custom-adjust-main-content');
+    jQuery('.page-title').addClass('xs-font-size-35 margin-bottom-30px');
+    var sliderImg1  = jQuery('.home-slideshow-wrapper img.slide-image');
+    jQuery('.home-slideshow-wrapper').hide().empty();
+    jQuery('.page-title').after('<div class="new-slider-img-wrapper"></div>');
+    jQuery('.new-slider-img-wrapper').html(sliderImg1);
+    /* jQuery('.new-slider-img-wrapper').after('<div class="company-branding-three-ventgrip-img-display-row row"><div class="col-xs-12"><img src="https://cdn.shopify.com/s/files/1/0895/4184/products/VentGripz_3x_NEW_grande.jpg?v=1452800941" class="full-width"></div></div></div>'); */
+    jQuery('.product-details, .share-buttons.no-count').hide();
+    jQuery('input#quantity').addClass('width-75-percent-important').addClass('max-width-80px').attr('maxlength', 4);
+    jQuery('.product-form-submit-wrap input[type="submit"]').addClass('margin-center');
+    /* ======================================================= */
+    jQuery('.breadcrumbs.meta').hide();
+    jQuery('#viewing-home-slide-1').addClass('.company-branding-page-slide');
+  jQuery('.product-form-submit-wrap input[type="submit"]').click(function(){
+    setTimeout(
+      function() 
+      {
+        /* Direct to cart after 2000ms */
+        window.location.href = 'http://ventgripz.com/checkout';
+      },
+    1000);
+  });
+    jQuery('.product-details + .product-wrap').addClass('product-wrap-adjusted');
+    jQuery('#shappify-qty-msg').addClass('form-sm-font-size-18');
+
+  } else if ( pageURI.indexOf('http://ventgripz.com/checkout') != -1 ){
+      jQuery('input.cart-item-quantity-display').addClass('cust-cart-item-quantity-css');
+  } else if ( pageURI.indexOf('ventgripz-1') != -1 ){
+      jQuery('main.main-content').hide().after('<div class="container"><div class="facebook-ventripz-product-wrapper row" style="margin-top: 40px;"></div></div>');
+      /* get usable variables */
+      var productDetails = jQuery('.product-details');
+      var productForm = jQuery('form.product-form');
+      var productDesc = jQuery('.product-description.rte');
+      var shareBtns = jQuery('.share-buttons.no-count');
+      jQuery('.facebook-ventripz-product-wrapper').append('<div class="col-xs-12 col-sm-6 left-product-imgs-col no-padding"></div><div class="col-xs-12 col-sm-6 right-product-imgs-col"></div>');
+      jQuery('.left-product-imgs-col').append('<img src="https://justinestrada.com/ventgripz/Driver-1.1.jpg" alt="Driver Image 1"/>').append('<img class="full-width" alt="Drive Image 2" src="https://cdn.shopify.com/s/files/1/0895/4184/products/Driver-2_grande.jpg"/>').append('<div class="bottom-2-imgs-row row"><div class="col-xs-4 btm-img-1-col no-padding"></div><div class="col-xs-8 btm-img-2-col no-padding"></div></div>');
+      /* btm imgs */
+      jQuery('.bottom-2-imgs-row .btm-img-1-col').append('<img class="full-width" alt="VentGrip 1" src="https://cdn.shopify.com/s/files/1/0895/4184/products/Ventgrip-1_grande.jpg"/>');
+      jQuery('.bottom-2-imgs-row .btm-img-2-col').append('<img class="full-width" alt="VentGrip 2" src="https://cdn.shopify.com/s/files/1/0895/4184/products/Ventgrip-2_grande.png"/>');
+      jQuery('.right-product-imgs-col').append('<img src="https://cdn.shopify.com/s/files/1/0895/4184/products/VentGripz_Logo_PNG_grande.png" alt="Ventgrips Logo" class="ventgripz-logo-facebook-product full-width"/>').append('<h3 class="text-center" style="color: #000; font-weight: bold;">Magnetic Phone Mount</h3>').append(productDetails).append(productForm).append(productDesc).append(shareBtns);
+      jQuery('.product-details').addClass('text-center');
+      jQuery('.input-wrapper.product-quantity.visible').hide();
+    jQuery('.product-form-submit-wrap').addClass('important-adjustment-center-add-btn');
+      
+
+      jQuery('.product-form-submit-wrap input[type="submit"]').addClass('margin-center');
+      jQuery('.product-description.rte h4').addClass('text-center');
+      jQuery('.product-description.rte h4 strong span').addClass('light-blue-clr');
+      jQuery('.share-buttons').hide();
+  }
+
+
+
+});
+  console.log('inside theme.liquid');
+</script>
+<!-- End of justin@justinestrada.com 's customization -->
+</body>
+</html>
